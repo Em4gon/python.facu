@@ -139,20 +139,9 @@ def saludar():
 
 
 
-#-----------------------------------------------------------ejercicio4c
-	
-def suma_coord():
-	x1= input("Coloque un la coordenada X")
-	x2= input("Coloque la otra coordenada X")
-	y1= input("Coloque la coordenada Y")	
-	y2= input("Coloque la otra coordenada Y")
-	numero = abs(x2-x1)*2+abs(y2-y1)*2 
-	print("El perimetro del rectangulo es", numero)
-	
-	
-#suma_coord()
 
-#---------------------------------------------------------ejercicio1/2
+
+#-----------------------------------------------ejercicio1/2
 def imprimir_cuadrados():
 	print("Se calcularán cuadrados entre dos numeros ingresados")
 	n1= int (input ("Ingrese un numero entero: "))
@@ -177,6 +166,7 @@ def saludo_producto():
 #saludo_producto()
 
 #---------------------------------ejercicio4a
+#Calcular el perímetro de un rectángulo dada su base y su altura.
 def calcular_rectangulo_perimetro():
 	base = int(input("Poné la base del rectangulo"))
 	altura = int(input("Poné la altura del rectangulo"))
@@ -185,6 +175,44 @@ def calcular_rectangulo_perimetro():
 	
 #calcular_rectangulo_perimetro()
 
+
+#------------------------ejercicio4b
+def area_rectangulo(a,b):
+	return (a*b)
+	
+#print("el area del rectangulo", area_rectangulo(2,8))
+
+#--------------------------------------------------ejercicio4c
+	
+def suma_coord():
+	x1= input("Coloque un la coordenada X")
+	x2= input("Coloque la otra coordenada X")
+	y1= input("Coloque la coordenada Y")	
+	y2= input("Coloque la otra coordenada Y")
+	numero = abs(x2-x1)*2+abs(y2-y1)*2 
+	print("El perimetro del rectangulo es", numero)
+	
+	
+#suma_coord()
+
+
+#-----------------------ejercicio4d
+#Calcular el perímetro de un círculo dado su radio.
+#Ayuda: Considerar a pi como 3,141592
+pi=3.141592
+
+def perimetro_circulo(r):
+	return 2*r*pi
+
+#print("El perimetro del circulo es ", perimetro_circulo(10))
+
+#--------------------------------------------ejercicio 4e
+#calcular el área de un círculo dado su radio
+
+def area_circulo(r):
+	return pi*(r**2)
+	
+#print("El area del circulo es " area_circulo(10))
 #--------------------ejercicio4g
 
 def cuadrado(x):
@@ -199,16 +227,7 @@ def hipotenusa (a,b):
 	
 #print(hipotenusa(5, 7))
 
-#------------------------ejercicio4b
-def area_rectangulo(a,b):
-	return (a*b)
-	
-#print("el area del rectangulo", area_rectangulo(2,8))
 
-#-----------------------ejercicio4d
-pi=3,141592
-print(pi)
-def perimetro_circulo(r):
 	
 
 #---------------ej6
@@ -219,4 +238,39 @@ def factorial(n):
 		fact=fact*i
 	return fact
 	
-#print(factorial(4))
+#print("El factorial de 4 es ", factorial(4))
+
+#ejercicio 7
+#mplementar algoritmos que resuelvan los siguientes problemas
+#1) dados dos números,imprimir la suma, 
+#resta, división y multiplicación de ambo
+
+#2)dado un número entero n imprimir su tabla de multiplicar
+
+def ej7a(x,y):
+	 print("Suma ", x+y)
+	 print("Resta", x-y)
+	 
+	 print("este es y ", y)
+
+def ej7b(n):
+	for i in range (1,11):
+		print (n*i)
+	
+#ej7b(7)
+
+"""
+Ejercicio 8.
+Escribir un programa que le pida una palabra al usuario para luego imprimirla
+1000 veces, en una única línea, con espacios intermedios.
+
+"""
+def ejercicio8():
+	palabra= input("Coloque la palabra a repetir... ")
+	cantidad= int(input("Cantidad...?"))
+	separador=input("Separador....?")
+	for i in range (1,(cantidad+1)):
+		print(palabra, sep=separador, end="\t")
+		
+print ("tres", "tristes", "tigres", sep=" ", flush=True)
+ejercicio8()
