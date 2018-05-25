@@ -43,7 +43,6 @@ def chequeo(lis1,lis2):
 	if contador==len(lis1):
 		print("todos los elementos de la primer lista (",lis1,"se encuentran dentro de la segunda (",lis2,")")
 		return True
-	#	print("mierdaa", contador)
 	else:
 		print("la lista1 ", lis1, "no esta contenida en la segunda", lis2)
 		return False
@@ -100,8 +99,6 @@ def permutaLista(lcompletando,tuplaIndice):
 	for numerito in indic:
 		lcompletando= lcompletando[:numerito]+[letra]+lcompletando[(numerito+1):]
 	return lcompletando
-
-print(permutaLista(listXCompletar("mierda"),devuelveIndice("a","mierda")))		
 
 def funcionJuego():
 	opcion=pideOpcion()
