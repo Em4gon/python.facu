@@ -80,6 +80,8 @@ def pideLetra(lista):
 	while len(letra)!=1:
 		if letra in lista:
 			letra=input("Ingrese UNA sola letra... ")
+		else:
+			letra=input("Ingrese UNA sola letra... ")
 	else:
 		return letra
 
@@ -150,7 +152,7 @@ def engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostra
 			clear(7)				
 	if vidas !=0:
 		print("Felicidades, la palabra era: ", palabra)
-		opcion=pideOpcion()
+		#opcion=pideOpcion()
 	elif vidas==0:
 		clear(4)
 		print("Perdiste ameo...")
@@ -181,14 +183,11 @@ def main():
 			funcionJuego(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada)
 		elif opcion=="b":
 			menuSinglePlayer(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada)
-			opcion=pideOpcion()
+		menu()
+		opcion=pideOpcion()
 	if opcion=="c":
 		clear(5)
 		print("Gracias por haber jugado!!!!!!!!!!!!!!!!!!#!")
 main()
-
-
-#funcion que toma una letra y una lista de letras (la palabra descomprimida)
-#arma una lista que tiene la longitud de la palabra
 
 #shit
