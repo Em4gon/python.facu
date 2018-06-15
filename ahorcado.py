@@ -181,6 +181,7 @@ def main():
 			funcionJuego(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada)
 		elif opcion=="b":
 			menuSinglePlayer(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada)
+			opcion=pideOpcion()
 	if opcion=="c":
 		clear(5)
 		print("Gracias por haber jugado!!!!!!!!!!!!!!!!!!#!")
