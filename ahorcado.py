@@ -1,5 +1,10 @@
 import random
 
+
+basico= ["perro", "Patricio", "maíz", "nuez", "Dory"]
+superior=["La casa de papel", "Titanic", "Los Redonditos de Ricota", "Los Palmeras", "Buscando a Nemo", "paralelepípedo"]
+
+
 def clear(n):
 	for i in range(n):
 		print("\n")
@@ -40,29 +45,13 @@ def pidePalabra():
 			palabraLista+=[letra]
 	return [palabra,palabraLista]
 
-	
+
 def pidePalabraMOD(palabra):
 	palabraLista=[]
 	for letra in palabra:
 			palabraLista+=[letra]
 	return [palabra,palabraLista]
 
-
-#lista,lista-> boolean
-def chequeo(lis1,lis2):
-	contador=0
-	for elemento in lis1:
-		for i in range(len(lis2)):
-			if elemento == lis2[i]:
-				contador+=1
-	#print("holaolaoaloal", contador)
-	if contador==len(lis1):
-		print("todos los elementos de la primer lista (",lis1,"se encuentran dentro de la segunda (",lis2,")")
-		return True
-	#	print("mierdaa", contador)
-	else:
-		print("la lista1 ", lis1, "no esta contenida en la segunda", lis2)
-		return False
 
 
 #funcion ahorcado: verifica si una letra esta en una palabra y devuelve un boolano
@@ -106,16 +95,8 @@ def devuelveIndice(letra,palabra):
 			indices+=[i]
 	return (letra,indices)
 
-"""
-def listXCompletar(x):
-#recibe una lista x y devuelve una lista de guiones bajos _
-	papel=["_"]
-#	for i in range(len(x)):
-#		papel+="_"
-	papel*= len(x)
-	return papel
-	
-	"""
+
+
 def listXCompletar(x):
 #recibe una lista x y devuelve una lista de guiones bajos _
 	papel=[]
@@ -143,121 +124,65 @@ def mletrasUsadas(lista):
 		for char in lista:
 			print(char,end=", ")
 
-basico= ["perro", "Patricio", "maíz", "nuez", "Dory"]
-superior=["La casa de papel", "Titanic", "Los Redonditos de Ricota", "Los Palmeras", "Buscando a Nemo", "paralelepípedo"]
+
+def engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada,cosoinput):
+	palabra,palabraLista=cosoinput
+	clear(20)
+	palabraMostrada=listXCompletar(palabra)
+	while vidas!=0 and (letrasTotales2(letrasCorrectas,palabraLista)+cantidadEspacios(palabraLista))!= len(palabraLista):
+		letra=pideLetra(letrasUsadas)
+		if hayLetra(letra,palabra):
+			letrasUsadas+=letra
+			letrasCorrectas+=letra
+			palabraMostrada=permutaLista(palabraMostrada,devuelveIndice(letra,palabra))
+			print("La letra '",letra,"' es correcta! ")
+			print(palabraMostrada)
+			mletrasUsadas(letrasUsadas)
+			clear(7)
+		else:
+			print("La letra '",letra,"' es incorrecta")
+			print(palabraMostrada)
+			letrasUsadas+=letra
+			mletrasUsadas(letrasUsadas)
+			clear(1)
+			vidas-=1
+			print("Te quedan ", vidas, "vidas")
+			clear(7)				
+	if vidas !=0:
+		print("Felicidades, la palabra era: ", palabra)
+		opcion=pideOpcion()
+	elif vidas==0:
+		clear(4)
+		print("Perdiste ameo...")
+	
 
 def menuSinglePlayer(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada):
 	subOpcion=int(input("Ingrese una dificultad, 1=facil, 2=dificil"))
 	if subOpcion==1:
-		palabra,palabraLista=pidePalabraMOD((basico[random.randint(0,len(basico)-1)]).lower())
-		palabraMostrada=listXCompletar(palabra)
-		while vidas!=0 and (letrasTotales2(letrasCorrectas,palabraLista)+cantidadEspacios(palabraLista))!= len(palabraLista):
-			letra=pideLetra(letrasUsadas)
-			if hayLetra(letra,palabra):
-				letrasUsadas+=letra
-				letrasCorrectas+=letra
-				palabraMostrada=permutaLista(palabraMostrada,devuelveIndice(letra,palabra))
-				print("La letra es correcta! ")
-				print(palabraMostrada)
-				mletrasUsadas(letrasUsadas)
-				clear(2)
-			else:
-				print("La letra es incorrecta")
-				print(palabraMostrada)
-				letrasUsadas+=letra
-				mletrasUsadas(letrasUsadas)
-				clear(1)
-				vidas-=1
-				print("Te quedan ", vidas, "vidas")
-				clear(4)
-		if vidas !=0:
-			print("Felicidades, la palabra era: ", palabra)
-		elif vidas==0:
-			clear(4)
-			print("Perdiste ameo...")	
+		engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada,pidePalabraMOD((basico[random.randint(0,len(basico)-1)]).lower()))
 	elif subOpcion==2:
-		
-		palabra,palabraLista=pidePalabraMOD((superior[random.randint(0,len(basico)-1)]).lower())
-		palabraMostrada=listXCompletar(palabra)
-		
-		while vidas!=0 and (letrasTotales2(letrasCorrectas,palabraLista)+cantidadEspacios(palabraLista))!= len(palabraLista):
-			letra=pideLetra(letrasUsadas)
-			if hayLetra(letra,palabra):
-				letrasUsadas+=letra
-				letrasCorrectas+=letra
-				palabraMostrada=permutaLista(palabraMostrada,devuelveIndice(letra,palabra))
-				print("La letra es correcta! ")
-				print(palabraMostrada)
-				mletrasUsadas(letrasUsadas)
-				clear(2)
-			else:
-				print("La letra '",letra, "' es incorrecta.")
-				print(palabraMostrada)
-				letrasUsadas+=letra
-				mletrasUsadas(letrasUsadas)
-				clear(1)
-				vidas-=1
-				print("Te quedan ", vidas, "vidas")
-				clear(4)
-		if vidas !=0:
-			print("Felicidades, la palabra era: ", palabra)
-			opcion=pideOpcion()
-		elif vidas==0:
-			clear(4)
-			print("Perdiste ameo...")				
-	opcion=pideOpcion()
-	return opcion
+		engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada,pidePalabraMOD((superior[random.randint(0,len(basico)-1)]).lower()))
+
 					
-def funcionJuego():
-	opcion=pideOpcion()
+def funcionJuego(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada):
+	engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada,pidePalabra()) 															#COMIENZA BLOQUE ENGINE 
+		
+def main():
 	palabra=""
 	palabraLista=[]
 	letrasUsadas=[]
 	letrasCorrectas=[]
 	palabraMostrada=[]
 	vidas=6
-	if opcion=="a":
-		palabra,palabraLista=pidePalabra()
-		clear(20)
-		palabraMostrada=listXCompletar(palabra)
-		while vidas!=0 and (letrasTotales2(letrasCorrectas,palabraLista)+cantidadEspacios(palabraLista))!= len(palabraLista):
-			letra=pideLetra(letrasUsadas)
-			if hayLetra(letra,palabra):
-				letrasUsadas+=letra
-				letrasCorrectas+=letra
-				palabraMostrada=permutaLista(palabraMostrada,devuelveIndice(letra,palabra))
-				print("La letra '",letra,"' es correcta! ")
-				print(palabraMostrada)
-				mletrasUsadas(letrasUsadas)
-				clear(7)
-			else:
-				print("La letra '",letra,"' es incorrecta")
-				print(palabraMostrada)
-				letrasUsadas+=letra
-				mletrasUsadas(letrasUsadas)
-				clear(1)
-				vidas-=1
-				print("Te quedan ", vidas, "vidas")
-				clear(7)				
-		if vidas !=0:
-			print("Felicidades, la palabra era: ", palabra)
-			opcion=pideOpcion()
-		elif vidas==0:
-			clear(4)
-			print("Perdiste ameo...")
-	elif opcion=="b":
-		menuSinglePlayer(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada)
-	elif opcion!="b" or opcion!="a":
-		print("Gracias, vuelvas prontos")
-		#return opcion
-		
-def main():
-	opcion=""
-	while opcion!="a" and opcion!="b" and opcion!="c":
-		menu()
-		funcionJuego()
-		break
+	menu()
+	opcion=pideOpcion()
+	while opcion=="a" or opcion=="b":
+		if opcion == "a":
+			funcionJuego(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada)
+		elif opcion=="b":
+			menuSinglePlayer(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada)
 	if opcion=="c":
+		clear(5)
 		print("Gracias por haber jugado!!!!!!!!!!!!!!!!!!#!")
 main()
 
