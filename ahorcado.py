@@ -8,13 +8,16 @@ listaAcentos=["á","é","í","ó","ú","Á","É","Í","Ó","Ú"]
 listaSAcentos=["a","e","i","o","u","A","E","I","O","U"]
 
 def replaceAcentos(lista):
-	#toma una lista y si una de las vocales esta dentro de la lista de vocales con acento la reemplalza
+	#toma una lista.... no, string..... y si una de las vocales esta dentro de la lista de vocales con acento la reemplalza
 	#devuelve la misma lista sin letras acentuadas
+	resul=""
 	for i in range(len(lista)):
 		letra = lista[i]
 		if letra in listaAcentos:
-			lista[i]=listaSAcentos[listaAcentos.index(letra)]
-	return lista
+			resul+=listaSAcentos[listaAcentos.index(letra)]
+		else:
+			resul+=letra
+	return resul
 
 #test sacar acentos
 #listatest=["m","í","é","r","d","á"]
@@ -34,8 +37,6 @@ def menu():
 	print("b. Partida contra la maquina")
 	print("c. Salir")
 	
-
-listaDificultadHell=["adaptacion","agudo","antibiotico","artritis","ataxia","atrofia","otorrinolaringologo","abreviatura","electroencefalografista","esternocleidomastoideo","desoxirribonucleico","electrocardiograma","fotosinteticamente","electrodomestico","caleidoscopio","pneumonoultramicroscopicsilicovolcanoconiosis","hipopotomonstrosesquipedaliofobia","supercalifragilisticoespialidoso"]
 
 #recibe una lista de letras, cuenta la cantidad de veces que aparece cada letra dentro de la palabra
 #lista lista -> number
@@ -59,13 +60,16 @@ def cantidadEspacios(lis):
 def pidePalabra():
 	palabraLista=[]
 	palabra=(input("Ingrese una palabra... ")).lower()
+	palabra= replaceAcentos(palabra)
 	for letra in palabra:
 			palabraLista+=[letra]
+	#palabraLista= replaceAcentos(palabraLista)
 	return [palabra,palabraLista]
 
 
 def pidePalabraMOD(palabra):
 	palabraLista=[]
+	palabra= replaceAcentos(palabra)
 	for letra in palabra:
 			palabraLista+=[letra]
 	return [palabra,palabraLista]
@@ -103,28 +107,6 @@ def pideLetra(lista):
 	else:
 		return letra
 
-
-""" ptueba con asterico
-def pideLetra(lista):
-	letra=input("Ingrese una letra... ")
-	#while  (True != letra.isdigit())
-	if letra!="*":
-		if letra in lista:
-			print("La letra ya se cuentra ingresada...")
-			while letra in lista:
-				letra=input("Ingrese una letra no ingresada previamente... ")
-		while len(letra)!=1:
-			if letra in lista:
-				letra=input("Ingrese UNA sola letra... ")
-			else:
-				letra=input("Ingrese UNA sola letra... ")
-		else:
-			return letra
-	else:
-		while not letra.isalpha():
-			letra=input("Ingrese una letra sin numeros")
-		return letra
-"""
 		
 def devuelveIndice(letra,palabra):
 #toma una letra y una lista de letras, para cada posicion que se repita la letra agrega
@@ -173,7 +155,7 @@ def fcond(letrasCorrectas,palabraLista):
 
 def engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada,cosoinput):
 	palabra,palabraLista=cosoinput
-	palabraLista=replaceAcentos(palabraLista)
+	#palabraLista=replaceAcentos(palabraLista)
 	condicion = fcond(letrasCorrectas,palabraLista)
 	clear(20)
 	palabraMostrada=listXCompletar(palabra)
