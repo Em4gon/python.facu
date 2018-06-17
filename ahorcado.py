@@ -7,6 +7,12 @@ abc=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r
 listaAcentos=["á","é","í","ó","ú","Á","É","Í","Ó","Ú"]
 listaSAcentos=["a","e","i","o","u","A","E","I","O","U"]
 
+
+def clear(n):
+	for i in range(n):
+		print("\n")
+
+
 def replaceAcentos(lista):
 	#toma una lista.... no, string..... y si una de las vocales esta dentro de la lista de vocales con acento la reemplalza
 	#devuelve la misma lista sin letras acentuadas
@@ -19,6 +25,122 @@ def replaceAcentos(lista):
 			resul+=letra
 	return resul
 
+def dvidas(x):
+	#recibe un numero y dibuja un monigote
+	if x == 10:
+		print ("|---------------")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("+")
+	elif x ==9:
+		print ("|---------------|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("+")
+	elif x ==8:
+		print ("|---------------|")
+		print("|\t\t|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("+")
+	elif x ==7:
+		print ("|---------------|")
+		print("|\t\t|")
+		print("|\t\t|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("+")
+	if x == 6:
+		print ("|---------------|")
+		print("|\t\t|")
+		print("|\t\t|")
+		print("|\t\t0")
+		print("|")
+		print("|")
+		print("|")
+		print("|")
+		print("+")
+	elif x == 5:
+		print ("|---------------|")
+		print("|\t\t|")
+		print("|\t\t|")
+		print("|\t\t0")
+		print("|\t\t|")
+		print("|")
+		print("|")
+		print("|")
+		print("+")
+	elif x == 4:
+		print ("|---------------|")
+		print("|\t\t|")
+		print("|\t\t|")
+		print("|\t\t0")
+		print("|\t      / |")
+		print("|")
+		print("|")
+		print("|")
+		print("+")
+	elif x == 3:
+		print ("|---------------|")
+		print("|\t\t|")
+		print("|\t\t|")
+		print("|\t\t0")
+		print("|\t      / | \\")
+		print("|")
+		print("|")
+		print("|")
+		print("+")
+	elif x == 2:
+		print ("|---------------|")
+		print("|\t\t|")
+		print("|\t\t|")
+		print("|\t\t0")
+		print("|\t      / | \\")
+		print("|\t\t|")
+		print("|")
+		print("|")
+		print("+")
+	elif x == 1:
+		print ("|---------------|")
+		print("|\t\t|")
+		print("|\t\t|")
+		print("|\t\t0")
+		print("|\t      / | \\")
+		print("|\t\t|")
+		print("|\t      /")
+		print("|")
+		print("+")
+	elif x == 0:
+		print ("|---------------|")
+		print("|\t\t|")
+		print("|\t\t|")
+		print("|\t\t0")
+		print("|\t      / | \\")
+		print("|\t\t|")
+		print("|\t      /   \\")
+		print("|")
+		print("+")
+	print ("Te quedan ",x," vidas")
+	clear(4)
+
+
 #test sacar acentos
 #listatest=["m","í","é","r","d","á"]
 #print(replaceAcentos(listatest))
@@ -26,10 +148,6 @@ def replaceAcentos(lista):
 #listatest=replaceAcentos(listatest)
 #print("esta es la lista post funcion", listatest)
 
-def clear(n):
-	for i in range(n):
-		print("\n")
-	
 #muestra el menu
 def menu():
 	print("Bienvenido al juego del ahorcado")
@@ -146,6 +264,7 @@ def mletrasUsadas(lista):
 		print("Las letras que ha usado son: ", end="\n")
 		for char in lista:
 			print(char,end=", ")
+	print("\n")
 
 def fcond(letrasCorrectas,palabraLista):
 	if (letrasTotales2(letrasCorrectas,palabraLista)+cantidadEspacios(palabraLista))!= len(palabraLista):
@@ -170,7 +289,7 @@ def engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostra
 				print(palabraMostrada)
 				mletrasUsadas(letrasUsadas)
 				condicion = fcond(letrasCorrectas,palabraLista)
-				clear(7)
+				dvidas(vidas)
 			else:
 				print("La letra '",letra,"' es incorrecta")
 				print(palabraMostrada)
@@ -178,8 +297,8 @@ def engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostra
 				mletrasUsadas(letrasUsadas)
 				clear(1)
 				vidas-=1
-				print("Te quedan ", vidas, "vidas")
-				clear(7)
+				dvidas(vidas)
+				#clear(7)
 		else:
 			letrasUsadas=[]
 			letrasCorrectas=[]
@@ -197,7 +316,7 @@ def engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostra
 		clear(4)
 		print("Perdiste ameo...")
 		print("La palabra era incorrecta, la palabra correcta era: ", palabra)
-		clear(4)
+		dvidas(0)
 
 def menuSinglePlayer(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada):
 	subOpcion=int(input("Ingrese una dificultad, 1=facil, 2=dificil"))
