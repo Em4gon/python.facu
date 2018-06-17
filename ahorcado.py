@@ -3,7 +3,22 @@ import random
 
 basico= ["perro", "Patricio", "maíz", "nuez", "Dory"]
 superior=["La casa de papel", "Titanic", "Los Redonditos de Ricota", "Los Palmeras", "Buscando a Nemo", "paralelepípedo"]
-abc=["a","b","c","d",]
+abc=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"]
+listaAcentos=["á","é","í","ó","ú","Á","É","Í","Ó","Ú"]
+listaSAcentos=["a","e","i","o","u","A","E","I","O","U"]
+
+def replaceAcentos(lista):
+	#toma una lista y si una de las vocales esta dentro de la lista de vocales con acento la reemplalza
+	#devuelve la misma lista sin letras acentuadas
+	for i in range(len(lista)):
+		letra = lista[i]
+		if letra in listaAcentos:
+			lista[i]=listaSAcentos[listaAcentos.index(letra)]
+	return lista
+
+#test sacar acentos
+#listatest=["m","í","é","r","d","á"]
+#print(replaceAcentos(listatest))
 
 def clear(n):
 	for i in range(n):
