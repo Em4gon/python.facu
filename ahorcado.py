@@ -3,7 +3,7 @@ import random
 
 basico= ["perro", "Patricio", "maíz", "nuez", "Dory"]
 superior=["La casa de papel", "Titanic", "Los Redonditos de Ricota", "Los Palmeras", "Buscando a Nemo", "paralelepípedo"]
-
+abc=["a","b","c","d",]
 
 def clear(n):
 	for i in range(n):
@@ -86,7 +86,28 @@ def pideLetra(lista):
 		return letra
 
 
-
+""" ptueba con asterico
+def pideLetra(lista):
+	letra=input("Ingrese una letra... ")
+	#while  (True != letra.isdigit())
+	if letra!="*":
+		if letra in lista:
+			print("La letra ya se cuentra ingresada...")
+			while letra in lista:
+				letra=input("Ingrese una letra no ingresada previamente... ")
+		while len(letra)!=1:
+			if letra in lista:
+				letra=input("Ingrese UNA sola letra... ")
+			else:
+				letra=input("Ingrese UNA sola letra... ")
+		else:
+			return letra
+	else:
+		while not letra.isalpha():
+			letra=input("Ingrese una letra sin numeros")
+		return letra
+"""
+		
 def devuelveIndice(letra,palabra):
 #toma una letra y una lista de letras, para cada posicion que se repita la letra agrega
 #un numemero correspondiente al indice en la lista de letras en donde se repia
@@ -126,37 +147,55 @@ def mletrasUsadas(lista):
 		for char in lista:
 			print(char,end=", ")
 
+def fcond(letrasCorrectas,palabraLista):
+	if (letrasTotales2(letrasCorrectas,palabraLista)+cantidadEspacios(palabraLista))!= len(palabraLista):
+		return True
+	else:
+		return False
 
 def engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada,cosoinput):
 	palabra,palabraLista=cosoinput
+	condicion = fcond(letrasCorrectas,palabraLista)
 	clear(20)
 	palabraMostrada=listXCompletar(palabra)
-	while vidas!=0 and (letrasTotales2(letrasCorrectas,palabraLista)+cantidadEspacios(palabraLista))!= len(palabraLista):
+	while vidas!=0 and condicion:
 		letra=pideLetra(letrasUsadas)
-		if hayLetra(letra,palabra):
-			letrasUsadas+=letra
-			letrasCorrectas+=letra
-			palabraMostrada=permutaLista(palabraMostrada,devuelveIndice(letra,palabra))
-			print("La letra '",letra,"' es correcta! ")
-			print(palabraMostrada)
-			mletrasUsadas(letrasUsadas)
-			clear(7)
+		if letra!="*":
+			if hayLetra(letra,palabra):
+				letrasUsadas+=letra
+				letrasCorrectas+=letra
+				palabraMostrada=permutaLista(palabraMostrada,devuelveIndice(letra,palabra))
+				print("La letra '",letra,"' es correcta! ")
+				print(palabraMostrada)
+				mletrasUsadas(letrasUsadas)
+				clear(7)
+			else:
+				print("La letra '",letra,"' es incorrecta")
+				print(palabraMostrada)
+				letrasUsadas+=letra
+				mletrasUsadas(letrasUsadas)
+				clear(1)
+				vidas-=1
+				print("Te quedan ", vidas, "vidas")
+				clear(7)
 		else:
-			print("La letra '",letra,"' es incorrecta")
-			print(palabraMostrada)
-			letrasUsadas+=letra
-			mletrasUsadas(letrasUsadas)
-			clear(1)
-			vidas-=1
-			print("Te quedan ", vidas, "vidas")
-			clear(7)				
+			letrasUsadas=[]
+			letrasCorrectas=[]
+			letra=input("Ingrese una palabra completa\t")
+			if letra == palabra:
+				condicion = False
+				print("La palabra era correcta")
+			else:
+				vidas = 0
 	if vidas !=0:
 		print("Felicidades, la palabra era: ", palabra)
+		clear(5)
 		#opcion=pideOpcion()
 	elif vidas==0:
 		clear(4)
 		print("Perdiste ameo...")
-	
+		print("La palabra era incorrecta, la palabra correcta era: ", palabra)
+		clear(4)
 
 def menuSinglePlayer(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada):
 	subOpcion=int(input("Ingrese una dificultad, 1=facil, 2=dificil"))
@@ -170,15 +209,15 @@ def funcionJuego(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabra
 	engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada,pidePalabra()) 															#COMIENZA BLOQUE ENGINE 
 		
 def main():
-	palabra=""
-	palabraLista=[]
-	letrasUsadas=[]
-	letrasCorrectas=[]
-	palabraMostrada=[]
-	vidas=6
 	menu()
 	opcion=pideOpcion()
 	while opcion=="a" or opcion=="b":
+		palabra=""
+		palabraLista=[]
+		letrasUsadas=[]
+		letrasCorrectas=[]
+		palabraMostrada=[]
+		vidas=6
 		if opcion == "a":
 			funcionJuego(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada)
 		elif opcion=="b":
