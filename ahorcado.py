@@ -19,6 +19,9 @@ def replaceAcentos(lista):
 #test sacar acentos
 #listatest=["m","í","é","r","d","á"]
 #print(replaceAcentos(listatest))
+#print("esta es la lista pre funcion", listatest)
+#listatest=replaceAcentos(listatest)
+#print("esta es la lista post funcion", listatest)
 
 def clear(n):
 	for i in range(n):
@@ -170,6 +173,7 @@ def fcond(letrasCorrectas,palabraLista):
 
 def engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada,cosoinput):
 	palabra,palabraLista=cosoinput
+	palabraLista=replaceAcentos(palabraLista)
 	condicion = fcond(letrasCorrectas,palabraLista)
 	clear(20)
 	palabraMostrada=listXCompletar(palabra)
