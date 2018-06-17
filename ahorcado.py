@@ -169,6 +169,7 @@ def engine(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostra
 				print("La letra '",letra,"' es correcta! ")
 				print(palabraMostrada)
 				mletrasUsadas(letrasUsadas)
+				condicion = fcond(letrasCorrectas,palabraLista)
 				clear(7)
 			else:
 				print("La letra '",letra,"' es incorrecta")
@@ -213,15 +214,21 @@ def main():
 	menu()
 	opcion=pideOpcion()
 	while opcion=="a" or opcion=="b":
-		palabra=""
-		palabraLista=[]
-		letrasUsadas=[]
-		letrasCorrectas=[]
-		palabraMostrada=[]
-		vidas=6
 		if opcion == "a":
+			palabra=""
+			palabraLista=[]
+			letrasUsadas=[]
+			letrasCorrectas=[]
+			palabraMostrada=[]
+			vidas=6
 			funcionJuego(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada)
 		elif opcion=="b":
+			palabra=""
+			palabraLista=[]
+			letrasUsadas=[]
+			letrasCorrectas=[]
+			palabraMostrada=[]
+			vidas=6
 			menuSinglePlayer(opcion,vidas, letrasCorrectas,palabraLista,letrasUsadas,palabraMostrada)
 		menu()
 		opcion=pideOpcion()
